@@ -23,6 +23,6 @@ The repository contains a spring boot application that can be containerized with
 - After the Jar files are created, run the command `docker-compose up`. This will create a PostgresSQL Database along with starting up your springboot application.
 
 # Testing the Application
-- With postman open, navigate to ` settings -> data -> import Data -> Import Data file. Note that each JSON file in the collections folder must be uploaded independently. 
+- With postman open, navigate to `settings -> data -> import Data -> Import Data file`. Note that each JSON file in the collections folder must be uploaded independently. 
 - With all the endpoints uploaded, you should now be able to send requests and recieve data.
 
