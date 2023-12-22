@@ -1,0 +1,34 @@
+version: '3.9'
+services:
+  postgres:
+    image: postgres:latest
+    container_name: my_postgres_db
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: sa
+    ports:
+      - "5432:5432"
+    networks:
+      - my_network
+
+  spring-app:
+      build:
+        context: .
+        dockerfile: Dockerfile
+      container_name: my_spring_app
+      depends_on:
+        - postgres
+      environment:
+        SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/postgres
+        SPRING_DATASOURCE_USERNAME: postgres
+        SPRING_DATASOURCE_PASSWORD: sa
+      ports:
+        - "8080:8080"
+      networks:
+        - my_network
+
+
+networks:
+  my_network:
+    driver: bridge
