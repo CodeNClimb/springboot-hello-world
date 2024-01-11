@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  app:
+  ecommerce-app:
     build:
       context: ./
       dockerfile: ./Dockerfile
@@ -36,25 +36,31 @@ services:
       - db
   grafana:
     image: grafana/grafana:latest
+    restart: unless-stopped
     ports:
       - "3000:3000"
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=admin
     volumes:
-      - grafana-data:/var/lib/grafana
+      - grafana-storage:/var/lib/grafana
     depends_on:
       - prometheus
 
   prometheus:
+    container_name: prometheus
     image: prom/prometheus:latest
+    restart: unless-stopped
     ports:
       - "9090:9090"
     volumes:
-      - prometheus-data:/prometheus
+      - ./prometheus:/etc/prometheus
+        - prom_data:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--web.enable-lifecycle'
     depends_on:
-      - app
+      - ecommerce-app
 volumes:
+  grafana-storage: {}
+  prom_data:
   db:
