@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  ecommerce-app:
+  open-api-app:
     build:
       context: ./
       dockerfile: ./Dockerfile
