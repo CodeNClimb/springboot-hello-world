@@ -9,5 +9,3 @@ RUN apt-get update && \
 
 COPY src ./src
 COPY pom.xml ./
-
-#CMD ["mvn", "clean", "compile"]
