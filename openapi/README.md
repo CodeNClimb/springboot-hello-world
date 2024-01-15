@@ -11,8 +11,6 @@
   - Ensure your basic authentication details are provided in postman prior to sending any requests.
 - Endpints
   - All available endpoints are available in the postman folder from the main directory.
-- Observability
-  - The health metrics of the application are available on [prometheus](http://localhost:9090) and [grafana](http://localhost:3000)
 
 ## Required Software
  - Please review the required software section in the main repository readMe. 
@@ -22,7 +20,8 @@
 - Download the application [here](https://github.com/IntegrationWorks/springboot-docker-applications) by navigating to `code -> download ZIP`.
 - Unzip the folder and open the extracted files in your downloaded IDE(Intellij or VSCode).
 - In your IDE terminal, navigate to the eCommerce folder using the command `cd openapi`.
-- Run `docker-compose up`. This will create and run the eCommerce springboot application. All available endpoints are available on [swagger](http://localhost:8080/swagger-ui/index.html)
+- Run `docker-compose up`. This will create and run the eCommerce springboot application.
+- All available endpoints are available on [swagger](http://localhost:8080/swagger-ui/index.html)
 
 ## Testing the Endpoints
 - Open and run POSTMAN API
