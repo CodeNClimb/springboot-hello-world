@@ -80,7 +80,12 @@ public class ECommerceApplication implements CommandLineRunner {
 						.password(passwordEncoder.encode("admin-pass"))
 						.roles("ADMIN")
 						.build());
-
+		inMemoryUserDetailsManager.createUser(
+				org.springframework.security.core.userdetails.User.builder()
+						.username("user")
+						.password(passwordEncoder.encode("user-pass"))
+						.roles("USER")
+						.build());
 
 
 		// Creating 11 Product instances with 10 reviews each

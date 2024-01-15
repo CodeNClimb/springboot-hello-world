@@ -29,14 +29,23 @@ public class SecurityConfig {
                 .authorizeHttpRequests(
                         (request) ->
                                 request
-                                        .requestMatchers("/h2-console/*").permitAll()
+                                        .requestMatchers(
+                                                "/v3/api-docs/**",
+                                                "/swagger-ui/**",
+                                                "/v2/api-docs/**",
+                                                "/swagger-resources/**").permitAll()
                                         .requestMatchers("/user/register").permitAll()
-                                        .requestMatchers(HttpMethod.DELETE).hasRole("ADMIN")
-                                        .requestMatchers(HttpMethod.POST).hasAnyRole("ADMIN", "USER")
-                                        .requestMatchers(HttpMethod.GET).hasAnyRole("ADMIN", "USER")
-                                        .requestMatchers(HttpMethod.PUT).hasAnyRole("ADMIN", "USER")
-                                        .requestMatchers(toH2Console()).permitAll()
+                                        .requestMatchers(
+                                                HttpMethod.DELETE).hasRole("ADMIN")
+                                        .requestMatchers(
+                                                HttpMethod.POST).hasAnyRole("ADMIN", "USER")
+                                        .requestMatchers(
+                                                HttpMethod.GET).hasAnyRole("ADMIN", "USER")
+                                        .requestMatchers(
+                                                HttpMethod.PUT).hasAnyRole("ADMIN", "USER")
+
                                         .anyRequest().authenticated()
+
                 )
                 .headers(
                         header ->

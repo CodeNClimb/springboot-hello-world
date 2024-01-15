@@ -1,40 +1,31 @@
 version: '3'
-
 services:
-  open-api-app:
-    build:
-      context: ./
-      dockerfile: ./Dockerfile
-    restart: on-failure
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/admin
-      SPRING_DATASOURCE_USERNAME: admin
-      SPRING_DATASOURCE_PASSWORD: admin
-      SPRING_JPA_HIBERNATE_DDL_AUTO: update
-    ports:
-      - "8080:8080"
-    depends_on:
-      - database
-    command: mvn clean spring-boot:run
-  database:
-    image: 'postgres:13.1-alpine'
-    restart: always
-    container_name: database
-    environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: admin
-    volumes:
-      - database:/var/lib/postgres
-  pgadmin:
-    image: dpage/pgadmin4:latest
-    restart: always
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin@ecommerce.com
-      PGADMIN_DEFAULT_PASSWORD: admin
-    ports:
-      - "5050:80"
-    depends_on:
-      - database
+    generated-api:
+        container_name: generated-api
+        build:
+            context: ./
+            dockerfile: Dockerfile
+        image: generated_api:latest
+        environment:
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/patientdb    
+            - SPRING_DATASOURCE_USERNAME=dbuser
+            - SPRING_DATASOURCE_PASSWORD=dbuser
+            - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+        ports:
+            - 80:8080
+        networks:
+            - spring-cloud-network
 
-volumes:
-  database:
+    db:
+        image: 'postgres:13.1-alpine'
+        container_name: db
+        environment:
+            - POSTGRES_USER= postgres                               
+            - POSTGRES_PASSWORD=password                          
+        volumes:
+          - "./database/mtdb:/var/lib/postgresql/data"
+        ports:
+            - 5432:5432
+networks:
+    spring-cloud-network:
+        driver: bridge

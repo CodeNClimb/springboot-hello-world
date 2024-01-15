@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.stereotype.Service;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,6 +17,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class UserServiceImpl implements UserService {
     UserRepository userRepository;
+    PasswordEncoder passwordEncoder;
     InMemoryUserDetailsManager userDetailsManager;
 
     @Override
@@ -62,10 +64,11 @@ public class UserServiceImpl implements UserService {
     }
     @Override
     public  void addUserToMemory (User u) {
+        System.out.println(u.getPassword());
          userDetailsManager.createUser(
                 org.springframework.security.core.userdetails.User.builder()
                         .username(u.getUsername())
-                                .password(u.getPassword())
+                                .password(passwordEncoder.encode(u.getPassword()))
                         .roles("USER")
                         .build());
     }
