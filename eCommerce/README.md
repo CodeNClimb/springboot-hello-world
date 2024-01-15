@@ -32,8 +32,8 @@ The repository contains a spring boot application that has been containerized us
 ## Health Monitoring
 
 ### Prometheus
-- Navigate to [prometheus](http://localhost:9090) in your web browser.
-- In the search tab, you may now enter a metric e.g. `process_cpu_seconds_total` of choice and recieve a graph of the results.
+- Navigate to [Prometheus](http://localhost:9090) in your web browser.
+- In the search tab, you may now enter a metric e.g. `process_cpu_seconds_total` of choice and receive a graph of the results.
 
 ### Grafana
 Grafana acts as an aggregator of all the metrics collected by prometheus. This allows us to create dashboards which gives us an overview of the health of our application at a glance. 
@@ -41,12 +41,12 @@ Grafana acts as an aggregator of all the metrics collected by prometheus. This a
 - The default users and password for this application are both admin. You will be required to chance these upon signing in.
 
 #### Creating a Data Source
-In order to link prometheus to grafana, we must first create a datasource.
-- Navigate to `menu -> connections -> data sources -> add new data source -> prometheus`. 
+In order to link Prometheus to Grafana, we must first create a data source.
+- Navigate to `menu -> connections -> data sources -> add new data source -> Prometheus`. 
 - Prometheus Server URL = `http://host.docker.internal:9090`
 - Save and Test.
 - You now have a data source configured. 
 
-#### Creating a Visualisation DashBoard
+#### Creating a Visualisation Dashboard
 
 - Navigate to `menu -> dashboard -> new -> new dashboard`. This allows you to upload a dashboard or create your own using the data source configured above. 

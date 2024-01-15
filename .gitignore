@@ -9,6 +9,8 @@
 .idea/**/shelf
 ./target
 ./vscode
+./database
+/database
 
 # Generated files
 .idea/**/contentModel.xml
