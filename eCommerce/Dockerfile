@@ -4,8 +4,7 @@ WORKDIR /app
 
 # Install Maven
 RUN apt-get update && \
-    apt-get install -y maven && \
-    rm -rf /var/lib/apt/lists/*
+    apt-get install -y maven 
 
 COPY src ./src
 COPY pom.xml ./

@@ -35,32 +35,25 @@ services:
     depends_on:
       - db
   grafana:
-    image: grafana/grafana:latest
-    restart: unless-stopped
+    image: grafana/grafana
     ports:
-      - "3000:3000"
-    environment:
-      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - 3000:3000
     volumes:
-      - grafana-storage:/var/lib/grafana
+      - grafana-data:/var/lib/grafana
     depends_on:
       - prometheus
 
   prometheus:
-    container_name: prometheus
     image: prom/prometheus:latest
-    restart: unless-stopped
     ports:
-      - "9090:9090"
+      - 9090:9090
     volumes:
-      - ./prometheus:/etc/prometheus
-        - prom_data:/prometheus
-    command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
-      - '--web.enable-lifecycle'
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
+    command: --config.file=/etc/prometheus/prometheus.yml
     depends_on:
       - ecommerce-app
 volumes:
-  grafana-storage: {}
-  prom_data:
   db:
+  prometheus-data:
+  grafana-data:
