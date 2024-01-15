@@ -29,20 +29,23 @@ public class SecurityConfig {
                 .authorizeHttpRequests(
                         (request) ->
                                 request
-                                        .requestMatchers("/v3/api-docs",
-                                        "/swagger/**",
-                                        "/configuration/ui",
-                                        "/swagger-resources/**",
-                                        "/configuration/security",
-                                        "/swagger-ui.html/*",
-                                                "/swagger-ui.html/**",
-                                        "/webjars/**").permitAll()
+                                        .requestMatchers(
+                                                "/v3/api-docs/**",
+                                                "/swagger-ui/**",
+                                                "/v2/api-docs/**",
+                                                "/swagger-resources/**").permitAll()
                                         .requestMatchers("/user/register").permitAll()
-                                        .requestMatchers(HttpMethod.DELETE).hasRole("ADMIN")
-                                        .requestMatchers(HttpMethod.POST).hasAnyRole("ADMIN", "USER")
-                                        .requestMatchers(HttpMethod.GET).hasAnyRole("ADMIN", "USER")
-                                        .requestMatchers(HttpMethod.PUT).hasAnyRole("ADMIN", "USER")
+                                        .requestMatchers(
+                                                HttpMethod.DELETE).hasRole("ADMIN")
+                                        .requestMatchers(
+                                                HttpMethod.POST).hasAnyRole("ADMIN", "USER")
+                                        .requestMatchers(
+                                                HttpMethod.GET).hasAnyRole("ADMIN", "USER")
+                                        .requestMatchers(
+                                                HttpMethod.PUT).hasAnyRole("ADMIN", "USER")
+
                                         .anyRequest().authenticated()
+
                 )
                 .headers(
                         header ->
