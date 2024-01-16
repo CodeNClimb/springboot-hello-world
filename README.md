@@ -17,5 +17,5 @@ This application was created to demonstrate the fundamentals of using springboot
 - Unzip the folder and open the extracted files in your downloaded IDE(Intellij or VSCode).
 - In your IDE terminal, navigate to the eCommerce folder using the command `cd hello-world`.
 - Run `docker-compose up`. This will create a simple springboot api.
-- Open your web browser and send a request `http://localhost:8080/welcome`.
+- Open your web browser and send a request to `http://localhost:8080/welcome`.
 - "Hello World!" should be displayed in your web browser.
